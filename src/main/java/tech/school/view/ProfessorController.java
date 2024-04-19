@@ -1,16 +1,15 @@
 package tech.school.view;
 
-import java.util.List;
-
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
-import jakarta.validation.Valid;
 import tech.school.domain.dto.exception.NotFoundException;
 import tech.school.domain.dto.v1.ProfessorDto;
 import tech.school.service.IProfessorService;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/professor")
@@ -39,7 +38,7 @@ public class ProfessorController {
     public ResponseEntity<ProfessorDto> atualizarProfessor(
         @PathVariable("id") int id,
         @RequestBody ProfessorDto pedido
-    ) {
+    ) throws Throwable {
         final ProfessorDto p = servico.atualizarProfessor(id, pedido);
 
         if (p == null) {

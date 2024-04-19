@@ -1,12 +1,11 @@
 package tech.school.service;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.stereotype.Service;
-
 import tech.school.domain.dto.exception.NotFoundException;
 import tech.school.domain.dto.v1.ProfessorDto;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Service
 public class ProfessorService implements IProfessorService {
@@ -17,10 +16,11 @@ public class ProfessorService implements IProfessorService {
     @Override
     public ProfessorDto criarProfessor(ProfessorDto novoProfessor) {
         final ProfessorDto p = new ProfessorDto(
-            id++,
-            novoProfessor.getNome(),
-            novoProfessor.getCpf(),
-            novoProfessor.getEmail()
+                id++,
+                novoProfessor.getNome(),
+                novoProfessor.getCpf(),
+                novoProfessor.getEmail(),
+                null
         );
         professores.add(p);
         return p;
@@ -34,10 +34,10 @@ public class ProfessorService implements IProfessorService {
     @Override
     public ProfessorDto buscarProfessor(int id) throws NotFoundException {
         return professores
-            .stream()
-            .filter(it -> it.getId()==id)
-            .findFirst()
-            .orElseThrow(() -> new NotFoundException(ProfessorDto.class, String.valueOf(id)));
+                .stream()
+                .filter(it -> it.getId()==id)
+                .findFirst()
+                .orElseThrow(() -> new NotFoundException(ProfessorDto.class, String.valueOf(id)));
     }
 
     @Override
@@ -47,7 +47,7 @@ public class ProfessorService implements IProfessorService {
             return null;
         }
         professores.remove(professor);
-        final ProfessorDto p = new ProfessorDto(professor.getId(), pedido.getNome(), pedido.getCpf(), pedido.getEmail());
+        final ProfessorDto p = new ProfessorDto(professor.getId(), pedido.getNome(), pedido.getCpf(), pedido.getEmail(), null);
         professores.add(p);
         return p;
     }
@@ -56,5 +56,15 @@ public class ProfessorService implements IProfessorService {
     public void removerProfessor(int id) throws NotFoundException {
         final ProfessorDto professor = buscarProfessor(id);
         professores.remove(professor);
+    }
+
+    @Override
+    public ProfessorDto buscarPorCpf(String cpf) throws NotFoundException {
+        return null;
+    }
+
+    @Override
+    public void criar(ProfessorDto professor) {
+
     }
 }

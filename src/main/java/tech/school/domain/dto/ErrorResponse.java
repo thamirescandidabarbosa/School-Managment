@@ -1,14 +1,12 @@
 package tech.school.domain.dto;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.Data;
+import org.springframework.web.bind.MethodArgumentNotValidException;
+import tech.school.domain.dto.exception.NotFoundException;
+
 import java.util.Collection;
 import java.util.stream.Collectors;
-
-import org.springframework.web.bind.MethodArgumentNotValidException;
-
-import com.fasterxml.jackson.annotation.JsonInclude;
-
-import lombok.Data;
-import tech.school.domain.dto.exception.NotFoundException;
 
 @Data
 public class ErrorResponse {

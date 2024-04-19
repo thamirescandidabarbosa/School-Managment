@@ -1,9 +1,9 @@
 package tech.school.service;
 
-import java.util.List;
-
 import tech.school.domain.dto.exception.NotFoundException;
 import tech.school.domain.dto.v1.ProfessorDto;
+
+import java.util.List;
 
 public interface IProfessorService {
 
@@ -11,10 +11,13 @@ public interface IProfessorService {
 
     List<ProfessorDto> listarProfessores();
 
-    ProfessorDto buscarProfessor(int id) throws NotFoundException;
+    ProfessorDto buscarProfessor(int id) throws Throwable;
 
-    ProfessorDto atualizarProfessor(int id, ProfessorDto pedido);
+    ProfessorDto atualizarProfessor(int id, ProfessorDto pedido) throws Throwable;
 
-    void removerProfessor(int id) throws NotFoundException;
+    void removerProfessor(int id) throws Throwable;
 
+    ProfessorDto buscarPorCpf(String cpf) throws NotFoundException, Throwable;
+
+    void criar(ProfessorDto professor);
 }
